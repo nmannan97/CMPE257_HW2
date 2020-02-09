@@ -1,0 +1,16 @@
+def H_x(counter,sum, w, datax = [], datay = [] ): # 1 dimensional H(x) function, GD
+    if counter<len(datax):    
+        sum+=math.pow(w*float(datax[counter])-float(datay[counter]),2)
+        counter+=1
+        return H_x(counter, sum, w, datax, datay)
+    else:
+        return sum/(len(datax)-1)
+
+
+def W_SGD(counter, sum, w, alpha, datax = [], datay = []):# 1D GSD
+    if counter<len(datax):    
+        sum+=(w*float(datax[counter])-float(datay[counter]))*float(datax[counter])
+        counter+=1
+        return W_SGD(counter, sum, w, alpha, datax, datay)
+    else:
+        return w - alpha*(sum/(len(datax)-1))
